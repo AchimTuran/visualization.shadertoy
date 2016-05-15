@@ -6,10 +6,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR})
 
 find_package(kodi REQUIRED)
 find_package(p8-platform REQUIRED)
+find_package(KissFFT 1.30 REQUIRED)
 
-add_subdirectory(lib/kissfft)
-
-set(DEPLIBS kissfft)
+set(DEPLIBS KissFFT::KissFFT)
 
 if (NOT WIN32)
   if(APPLE)
@@ -39,7 +38,6 @@ if (NOT WIN32)
                       ${GLEW_INCLUDE_DIR}
                       ${KODI_INCLUDE_DIR}
                       ${p8-platform_INCLUDE_DIRS}
-                      ${PROJECT_SOURCE_DIR}/lib/kissfft
                       ${CMAKE_INCLUDE_PATH})
 
   set(SHADERTOY_SOURCES src/lodepng.cpp
@@ -50,7 +48,6 @@ if (NOT WIN32)
 elseif(WIN32)
   include_directories(${KODI_INCLUDE_DIR}
                       ${p8-platform_INCLUDE_DIRS}
-                      ${PROJECT_SOURCE_DIR}/lib/kissfft
                       ${CMAKE_INCLUDE_PATH})
 
   set(SHADERTOY_SOURCES src/WICTextureLoader.cpp
